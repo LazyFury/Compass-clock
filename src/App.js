@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 // import logo from './logo.svg';
-import http from './server'
 import './App.css';
 
 class App extends Component {
@@ -34,15 +33,7 @@ class App extends Component {
       second:time.getSeconds()
      })
    },1000)
-   let time= new Date()
-   console.log(http.get(`/app/god/${time.getFullYear()}/${this.addPreZero(time.getMonth()+1)}/${time.getFullYear()+this.addPreZero(time.getMonth()+1)+this.addPreZero(time.getDate())}.js`).then(res=>{
-    //  console.log(res.data.replace(/(\w+):/g,`"$1":`))
-     this.setState({
-       jixiong:JSON.parse(res.data.replace(/(\w+):/g,`"$1":`).replace(/&nbsp;/g,""))
-     },()=>{
-       console.log(this.state.jixiong)
-     })
-   }))
+
  }
   array = length => Array.from({length}).map((v, k) => k).map(x=>x+1);
   addPreZero = num =>{
@@ -60,20 +51,6 @@ class App extends Component {
             <span>
             {this.state.year}</span>/年
             </div>
-            {this.state.jixiong!==undefined && <div>
-                  <div>岁次: {this.state.jixiong.html.suici}</div>
-                  <div>黄道吉日:{this.state.jixiong.html.dao}</div>
-                  <div>
-                    <span>宜: {this.state.jixiong.html.yi}</span> <br></br>
-                    <span>忌: {this.state.jixiong.html.ji}</span> <br></br>
-                    <span>冲: {this.state.jixiong.html.chong}</span> <br></br>
-                  </div>
-                  <div>
-                  <span>财神: {this.state.jixiong.html.cai}</span> <br></br>
-                    <span>喜神: {this.state.jixiong.html.xi}</span> <br></br>
-                    <span>福神: {this.state.jixiong.html.fu}</span> <br></br>
-                  </div>
-            </div>}
           </div>
           <div className='M_month'>
           {`${this.state.M_month}`}
